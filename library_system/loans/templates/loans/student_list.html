@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Loan Dashboard</title>
+    <style>
+        body { font-family: sans-serif; margin: 40px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { padding: 10px; border: 1px solid #ddd; text-align: left; }
+        th { background-color: #f4f4f4; }
+    </style>
+</head>
+<body>
+
+    <h1>Student Loan Dashboard</h1>
+
+    <h3>Registered Students</h3>
+    <ul>
+        {% for student in students %}
+            <li>{{ student.name }} (ID: {{ student.student_id }})</li>
+        {% empty %}
+            <li>No students registered yet.</li>
+        {% endfor %}
+    </ul>
+
+    <hr>
+
+    <h3>Loan Records</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Student Name</th>
+                <th>Amount</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for loan in loans %}
+            <tr>
+                <td>{{ loan.student.name }}</td>
+                <td>${{ loan.amount }}</td>
+                <td>{{ loan.status }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="3">No loan records found.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</body>
+</html>
